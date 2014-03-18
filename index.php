@@ -1,15 +1,21 @@
 <?php
 	include_once("event.php");
 	include_once("lib/html.php");
-$events = [new Event ('image' , 'event 1' , 'description' , 'date' , 'time' , 'website' ,'email'),
-new Event ('image' , 'event 2' , 'description' , 'date' , 'time' , 'website' ,'email'),
-new Event ('image' , 'event 3' , 'description' , 'date' , 'time' , 'website', 'email'),
-new Event ('image' , 'event 4' , 'description' , 'date' , 'time' , 'website' ,'email'),
-new Event ('image' , 'event 5' , 'description' , 'date' , 'time' , 'website' ,'email')];
+	$imageSize = ["height" => 50, "width" => 50];
+$events = [new Event ('jep.jpg' , 'event 1' , 'description' , 'date' , 'time' , 'website' ,'email'),
+new Event ('apple.jpg' , 'event 2' , 'description' , 'date' , 'time' , 'website' ,'email'),
+new Event ('linux.jpg' , 'event 3' , 'description' , 'date' , 'time' , 'website', 'email'),
+new Event ('microzach.jpg' , 'event 4' , 'description' , 'date' , 'time' , 'website' ,'email'),
+new Event ('twitter1.gif' , 'event 5' , 'description' , 'date' , 'time' , 'website' ,'email')];
 $content = "";
 foreach ($events as $event) {
-	$content .= new  Div (new Heading($event->title));
-}
+		$content .= new Div(
+			new Link(
+				new Heading($event->title),
+				['href'=>'antwoord.php']
+			).
+			new image($event->image, $imageSize));
+	}
 ?>
 
 <!DOCTYPE html>
