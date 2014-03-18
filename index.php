@@ -1,22 +1,10 @@
 <?php
-/**
-* 
-*/
-class events
-{ public $image , $title , $description , $date , $time , $website , $email;
-	
-	public function __construct($image , $title , $description , $date , $time , $website , $email)
-	{
-		$this->$image = $image;
-		$this->$title = $title;
-		$this->$description = $description;
-		$this->$date = $date;
-		$this->$time = $time;
-		$this->$website = $website;
-		$this->$email = $email;
-	}
-}
+
+	include_once("lib/event.php");
 	include_once("lib/html.php");
+$event = new event['image' , 'title' , 'description' , 'date' , 'time' , 'website' 'email']
+
+
 
 	$user_name ="";
 	if (isset($_POST['user_name'])) {
