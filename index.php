@@ -5,7 +5,7 @@
 class events
 { public $image , $title , $description , $date , $time , $website , $email;
 	
-	function __construct($image , $title , $description , $date , $time , $website , $email)
+	public function __construct($image , $title , $description , $date , $time , $website , $email)
 	{
 		$this->$image = $image;
 		$this->$title = $title;
