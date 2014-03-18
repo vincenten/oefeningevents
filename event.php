@@ -1,4 +1,4 @@
-class events
+<?php class events
 { public $image , $title , $description , $date , $time , $website , $email;
 	
 	public function __construct($image , $title , $description , $date , $time , $website , $email)
