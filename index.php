@@ -9,10 +9,15 @@ foreach ($events as $event) {
 		$content .= new Div(
 			new Link(
 				new Heading($event->title),
-				['href'=>'response.php']
+				['href'=>'response.php?id='.$event->id]
 			).
 			new image($event->image, $imageSize));
 	}
+	
+
+
+
+	
 ?>
 
 <!DOCTYPE html>

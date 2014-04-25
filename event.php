@@ -1,5 +1,5 @@
 <?php class Event
-{ public $image , $title , $description , $date , $time , $website , $email;
+{ public $id , $image , $title , $description , $date , $time , $website , $email;
 	
 	public function __construct($id, $image , $title , $description , $date , $time , $website , $email)
 	{
