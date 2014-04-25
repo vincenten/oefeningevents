@@ -15,8 +15,6 @@ foreach ($events as $event) {
 				);
 	}
 
-
-
  ?>
  <!DOCTYPE html>
 <html>
