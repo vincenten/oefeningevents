@@ -4,7 +4,7 @@
 	include_once("array.php");
 	$imageSize = ["height" => 50, "width" => 50];
 
-$content = "";
+$content = new Link("New Event",array("href"=>"new.php","class"=>"btn btn-primary btn-lg active","role"=>"button"));
 foreach ($events as $event) {
 		$content .= new Div(
 			new Link(
@@ -12,6 +12,7 @@ foreach ($events as $event) {
 				['href'=>'response.php?id='.$event->id]
 			).
 			new image($event->image, $imageSize));
+
 	}
 	
 

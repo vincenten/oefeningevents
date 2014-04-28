@@ -1,14 +1,12 @@
-<?php
-ìnclude_once
-/* Begin a transaction, turning off autocommit */
-$DBH = new PDO("mysql:host=localhost;dbname=base", "root", "");
+<?php 
+$host = "localhost";
+$user = "root";
+$pass = "";
+$dbname = "base";
+$DBH=new PDO("mysql:host=$host;dbname=$dbname",$user,$pass);
 
-$sql = 'INSERT INTO base
-    (id, title, description, date, time, website, email)
-    VALUES ($_get[id] + 1, event + id , description, date, time, website, email)';
+$STH = $DBH->query('SELECT id,title,description,date,,time,website,Email,from events');
+$STH2 = $DBH->prepare("INSERT INTO events(title,description,date,time,website,email) values(:title,:Description,:Date,:Time,:website,:Email);");
 
-$sth = $DBH->prepare($sql);
-
-$DBH->commit;
 
 ?>

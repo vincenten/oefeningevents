@@ -84,3 +84,17 @@ class Link extends HtmlElement{
 		parent::__construct($content,$attributes);
 	}
 }
+
+class Label extends HtmlElement{
+		public function __construct($content,$attributes = array()){
+		$this ->tag = "label";
+		parent::__construct($content,$attributes);
+	}
+}
+
+class Textarea extends HtmlElement{
+		public function __construct($content,$attributes = array()){
+		$this ->tag = "textarea";
+		parent::__construct($content,$attributes);
+	}
+}
