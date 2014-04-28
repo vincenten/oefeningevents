@@ -1,34 +1,30 @@
-<?php
-	include_once("event.php");
-	include_once("lib/html.php");
-	include_once("array.php");
-	$imageSize = ["height" => 50, "width" => 50];
+<?php 
+include_once("lib/html.php");
+include_once("event.php");
+include_once("database.php");
 
-$content = new Link("New Event",array("href"=>"new.php","class"=>"btn btn-primary btn-lg active","role"=>"button"));
-foreach ($events as $event) {
-		$content .= new Div(
-			new Link(
-				new Heading($event->title),
-				['href'=>'response.php?id='.$event->id]
-			).
-			new image($event->image, $imageSize));
+$website="";
+while($row = $STH->fetch()){
+	$id = $row['id'];
+	$website=$website.new Link($row['title'],array("class"=>"list-group-item","href"=>"response.php?event=$id"))."\n";
+}
 
-	}
-	
-
-
-
-	
+$content = 	new Heading("Events",1).
+			$website.
+			new Paragraph("").
+			new Link("New Event",array("href"=>"new.php","class"=>"btn btn-primary btn-lg active","role"=>"button"));
 ?>
 
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" href="css/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="css/signup.css">
 	<title></title>
 </head>
 <body>
 <?php echo $content; ?>
 </body>
 </html>
+
 

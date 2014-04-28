@@ -67,8 +67,8 @@ if(isset($_POST['submit'])) {
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" type="text/css" href="dist/css/bootstrap.css">
-<link rel="stylesheet" type="text/css" href="dist/css/signup.css">
+<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="css/signup.css">
 	<title></title>
 </head>
 <body>
