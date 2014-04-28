@@ -59,16 +59,6 @@ if(isset($_POST['submit'])) {
 	$Data=array("title"=>$_POST["Name"],"Description"=>$_POST["Description"],"Date"=>$_POST["Date"],"Time"=>$_POST["Time"],"website"=>$_POST["Link"],"Email"=>$_POST["Email"],
 		);
 	$STH2->execute($Data);
-
-try {
-$DBH = new PDO("mysql:host=$host;dbname=$dbname", $user, $pass);
-$DBH->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
-# UH-OH! Typed DELECT instead of SELECT!
-$DBH->prepare('DELECT name FROM people');
-} catch(PDOException $e) {
-echo "I'm sorry. I'm afraid I can't do that.";
-file_put_contents('PDOErrors.txt', $e->getMessage(), FILE_APPEND);
-}
 }
 
 
