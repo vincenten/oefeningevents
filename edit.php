@@ -3,22 +3,36 @@ include_once("lib/html.php");
 include_once("event.php");
 include_once("database.php");
 
-$event = $_GET["event"];
 $content = "";
+$id2;
 
 $STH->setFetchMode(PDO::FETCH_ASSOC);
 
 while($row = $STH->fetch()){
 if($row['id']==$_GET["event"]){
-	$id = $row['id'];
-			$name = $row['Name'];
-			$date = $row['Date'];
-			$time = $row['Time'];
-			$link = $row['Link'];
-			$email = $row['Email'];
-			$image = $row['Image'];
-			$discription = $row['Discription'];
-			$imagealt = $row['image_alt'];
+			$id = $row['id'];
+			$name = $row['title'];
+			$date = $row['date'];
+			$time = $row['time'];
+			$link = $row['website'];
+			$email = $row['mail'];
+			$description = $row['description'];
+
+try {
+	$host = "localhost";
+	$user = "root";
+	$pass = "";
+	$dbname = "base";
+	$DBH = new PDO("mysql:host=$host;dbname=$dbname", $user, $pass);
+	$DBH->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
+	$DBH2 = new PDO("mysql:host=$host;dbname=$dbname", $user, $pass);
+	$DBH2->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
+
+
+
+	} catch(PDOException $e) {
+	echo "I'm sorry. I'm afraid I can't do that.";
+}
 
 $content = 	new Paragraph(
 				new Div(
@@ -57,22 +71,10 @@ $content = 	new Paragraph(
 					,array("class"=>"col-sm-10"))
 				,array("class"=>"form-group")).
 				new Div(
-					new Label("Event image",array("for"=>"inputImage","class"=>"col-sm-2 control-label")).
-					new Div(
-						new Input("","text",array("class"=>"form-control","id"=>"inputImage","placeholder"=>"Image link","Name"=>"Image", "value"=> "$image")) 
-					,array("class"=>"col-sm-10"))
-				,array("class"=>"form-group")).
-				new Div(
-					new Label("Event image alternate text",array("for"=>"inputImagealt","class"=>"col-sm-2 control-label")).
-					new Div(
-						new Input("","text",array("class"=>"form-control","id"=>"inputImagealt","placeholder"=>"Image alternate text","Name"=>"imagealt")) 
-					,array("class"=>"col-sm-10"))
-				,array("class"=>"form-group")).
-				new Div(
 					new Label("Event discription",array("for"=>"inputEventDiscription","class"=>"col-sm-2 control-label")).
 					new Div(
-						new Input("", "text", array("class"=>"form-control","rows"=>"5","id"=>"inputEventDiscription","placeholder"=>"Event discription","Name"=>"Discription"
-							, "value"=> "$discription"))
+						new Input("", "text", array("class"=>"form-control","rows"=>"5","id"=>"inputEventDescription","placeholder"=>"Event description","Name"=>"Description"
+							, "value"=> "$description"))
 					,array("class"=>"col-sm-10"))
 				,array("class"=>"form-group")).				
 				new Div(
@@ -84,13 +86,11 @@ $content = 	new Paragraph(
 			new Link("Back to events",array("href"=>"index.php","class"=>"btn btn-primary btn-lg active","role"=>"button"));;}}
 
 if(isset($_POST['submit'])) {
-//	$Name=$_POST['Name'];
-//	echo $Name;
-	$Data=array("Name"=>$_POST["Name"],"Date"=>$_POST["Date"],"Time"=>$_POST["Time"],"Link"=>$_POST["Link"],"Email"=>$_POST["Email"],"Image"=>$_POST["Image"],"image_alt"=>$_POST["Image_alt"],"Discription"=>$_POST["Discription"]);
+	$Data=array("title"=>$_POST["Name"],"Description"=>$_POST["Description"],"Date"=>$_POST["Date"],"Time"=>$_POST["Time"],"website"=>$_POST["Link"],"Email"=>$_POST["Email"]);
 	$STH2->execute($Data);
+	$DBH->query('SELECT id,title,description,date,time,website,mail from evenementen;');
+	$DBH2->query("DELETE FROM evenementen WHERE id= '$id' ");
 }
-
-
 ?>
 
 <!DOCTYPE html>
