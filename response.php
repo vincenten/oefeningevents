@@ -17,7 +17,7 @@ while($row = $STH->fetch()){
 					new Link("website: ".$row['website'])."\n".
 					new Paragraph("email: ".$row['mail'])."\n".
 					new Link("Back to events",array("href"=>"index.php","class"=>"btn btn-primary btn-lg active","role"=>"button")).
-					new Link("Edit",array("href"=>"edit.php","class"=>"btn btn-primary btn-lg active","role"=>"button"));
+					new Link("Edit",array("href"=>"edit.php?event=$event","class"=>"btn btn-primary btn-lg active","role"=>"button"));
 	
 	}
 }
